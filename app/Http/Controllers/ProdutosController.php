@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Produtos\StoreProdutos;
+use App\Http\Requests\Produtos\UpdateProdutos;
 use App\Repositories\Contracts\ProdutoRepositoryContract;
 use Exception;
 use Illuminate\Http\Request;
@@ -84,7 +85,7 @@ class ProdutosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreProdutos $request, $id)
+    public function update(Request $request, $id)
     {
         $data = $request->except("_token");
 

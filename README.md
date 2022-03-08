@@ -28,3 +28,7 @@ Depois dos passos necessários execute o comando `php artisan migrate` para cria
 |---------|---------|
 |localhost/8000     |aplicação (http)      ||
 |localhost/phpmyadmin     |Phpmyadmin        |
+
+---
+
+Para mais informações sobre as rotas acesse o repositorio `https://github.com/Jorge-Calheiros-de-Sousa/laravel-ecommerce-api-documentation`

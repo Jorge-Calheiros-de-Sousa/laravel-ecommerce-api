@@ -84,7 +84,7 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCategorias $request, $id)
+    public function update(Request $request, $id)
     {
         $data = $request->except("_token");
 
