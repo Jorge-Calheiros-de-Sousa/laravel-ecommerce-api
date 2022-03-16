@@ -18,7 +18,7 @@ class UploadFileService implements UploadFileServiceContract
 
             if (!$name) {
                 $fileName = uniqid(str_replace("." . $fileOriginalExtension, "", $fileOriginalName));
-                $fileName += $fileName . ".$fileOriginalExtension";
+                $fileName = $fileName . ".$fileOriginalExtension";
             }
             $filePath = "$directory/$fileName";
             $fileContents = file_get_contents($file);

@@ -49,7 +49,6 @@ class ProdutosController extends Controller
     public function store(StoreProdutos $request)
     {
         $data = $request->except("_token");
-
         try {
             if (!$created = $this->repository->create($data)) {
                 throw new Exception($created);

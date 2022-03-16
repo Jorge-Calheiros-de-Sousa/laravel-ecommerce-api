@@ -22,14 +22,13 @@ class ProdutosObserver
      */
     public function created(Produtos $produtos)
     {
-        //
+        if (request()->hasFile("foto")) {
+            $this->UpdateProdutosFoto($produtos);
+        }
     }
 
     public function saving(Produtos $produtos)
     {
-        if (request()->hasFile("foto")) {
-            $this->UpdateProdutosFoto($produtos);
-        }
     }
 
     /**
@@ -85,6 +84,7 @@ class ProdutosObserver
             if ($filePath = $this->repository->run($produtoFoto, $produtoDirectory)) {
                 throw new Exception("Não foi possivel fazer o upload da imagem");
             }
+            dd($filePath);
             $produtos->foto = $filePath;
         } catch (\Throwable $th) {
             return $th;
