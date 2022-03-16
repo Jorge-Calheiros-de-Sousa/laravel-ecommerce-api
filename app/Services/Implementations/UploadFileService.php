@@ -26,7 +26,7 @@ class UploadFileService implements UploadFileServiceContract
             if (!Storage::disk($disk)->put($filePath, $fileContents)) {
                 throw new Exception("Nao foi possivel fazer o upload de imagem");
             }
-            return $filePath;
+            return $fileName;
         } catch (\Throwable $th) {
             return false;
         }

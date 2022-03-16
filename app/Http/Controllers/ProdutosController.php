@@ -139,4 +139,10 @@ class ProdutosController extends Controller
             return response()->json(compact("th"), self::STATUS_CODE_ERROR);
         }
     }
+
+    public function image($fileName)
+    {
+        $path = public_path("/storage/produtos/cover/");
+        return response()->file($path . $fileName);
+    }
 }
