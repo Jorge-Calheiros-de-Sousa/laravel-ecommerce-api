@@ -18,7 +18,7 @@ class UploadFileService implements UploadFileServiceContract
 
             if (!$name) {
                 $fileName = uniqid(str_replace("." . $fileOriginalExtension, "", $fileOriginalName));
-                $fileName += $fileName . ".$fileOriginalExtension";
+                $fileName = $fileName . ".$fileOriginalExtension";
             }
             $filePath = "$directory/$fileName";
             $fileContents = file_get_contents($file);
@@ -26,7 +26,7 @@ class UploadFileService implements UploadFileServiceContract
             if (!Storage::disk($disk)->put($filePath, $fileContents)) {
                 throw new Exception("Nao foi possivel fazer o upload de imagem");
             }
-            return $filePath;
+            return $fileName;
         } catch (\Throwable $th) {
             return false;
         }
