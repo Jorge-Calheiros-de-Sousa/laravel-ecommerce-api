@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Produtos\StoreProdutos;
-use App\Http\Requests\Produtos\UpdateProdutos;
 use App\Repositories\Contracts\ProdutoRepositoryContract;
 use Exception;
 use Illuminate\Http\Request;
