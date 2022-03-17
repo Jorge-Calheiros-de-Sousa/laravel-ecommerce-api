@@ -34,7 +34,19 @@ class CategoriasController extends Controller
             }
             return response()->json(compact("list"));
         } catch (\Throwable $th) {
-            return response()->json(compact('th'), self::STATUS_CODE_ERROR);
+            return response()->json($th, self::STATUS_CODE_ERROR);
+        }
+    }
+
+    public function listAllCategories(int $id)
+    {
+        try {
+            if (!$list = $this->repository->list()) {
+                throw new Exception($list);
+            }
+            return response()->json(compact("list"));
+        } catch (\Throwable $th) {
+            return response()->json($th, self::STATUS_CODE_ERROR);
         }
     }
 
@@ -106,7 +118,7 @@ class CategoriasController extends Controller
             }
             return response()->json(compact("restored"), self::STATUS_CODE_UPDATE);
         } catch (\Throwable $th) {
-            return response()->json(compact("th"), self::STATUS_CODE_ERROR);
+            return response()->json($th, self::STATUS_CODE_ERROR);
         }
     }
 
