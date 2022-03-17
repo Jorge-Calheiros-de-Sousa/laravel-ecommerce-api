@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Produtos\StoreProdutos;
-use App\Http\Requests\Produtos\UpdateProdutos;
 use App\Repositories\Contracts\ProdutoRepositoryContract;
 use Exception;
 use Illuminate\Http\Request;
@@ -49,7 +48,6 @@ class ProdutosController extends Controller
     public function store(StoreProdutos $request)
     {
         $data = $request->except("_token");
-
         try {
             if (!$created = $this->repository->create($data)) {
                 throw new Exception($created);
@@ -139,5 +137,11 @@ class ProdutosController extends Controller
         } catch (\Throwable $th) {
             return response()->json(compact("th"), self::STATUS_CODE_ERROR);
         }
+    }
+
+    public function image($fileName)
+    {
+        $path = public_path("/storage/produtos/cover/");
+        return response()->file($path . $fileName);
     }
 }
