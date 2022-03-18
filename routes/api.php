@@ -29,3 +29,4 @@ Route::get("/produtos/image/{fileName}", [ProdutosController::class, "image"]);
 Route::apiResource("/categorias", CategoriasController::class);
 Route::get("/categorias/restore/{categoria}", [CategoriasController::class, "restore"]);
 Route::delete("/categorias/forceDelete/{categoria}", [CategoriasController::class, "forceDelete"]);
+Route::get("/categorias/listAllCategories/{categoria}", [CategoriasController::class, "listAllCategories"]);
