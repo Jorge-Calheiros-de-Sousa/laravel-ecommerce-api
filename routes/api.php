@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource("/produtos", ProdutosController::class);
 Route::get("/produtos/restore/{produto}", [ProdutosController::class, "restore"]);
 Route::delete("/produtos/forceDelete/{produto}", [ProdutosController::class, "forceDelete"]);
+Route::get("/produtos/onlytrashed/{produto}", [ProdutosController::class, "onlyTrashed"]);
 Route::get("/produtos/image/{fileName}", [ProdutosController::class, "image"]);
 
 Route::apiResource("/categorias", CategoriasController::class);

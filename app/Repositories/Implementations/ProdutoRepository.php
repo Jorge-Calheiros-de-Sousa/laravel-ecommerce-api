@@ -23,4 +23,18 @@ class ProdutoRepository extends AbstractRepository implements ProdutoRepositoryC
 
         return $mainQuery->paginate($perPage);
     }
+
+    public function getTrash(int $perPage, string $field, string $nameSearch, string $categoria): LengthAwarePaginator
+    {
+        $mainQuery = $this->model->onlyTrashed()->with(["categoria"])->when($nameSearch, function ($query) use ($field, $nameSearch) {
+            $query->where($field, "like", "%$nameSearch%");
+        })
+            ->when($categoria, function ($query) use ($categoria) {
+                $query->whereHas("categoria", function ($query) use ($categoria) {
+                    $query->where("categorias.slug", $categoria);
+                });
+            });
+
+        return $mainQuery->paginate($perPage);
+    }
 }
