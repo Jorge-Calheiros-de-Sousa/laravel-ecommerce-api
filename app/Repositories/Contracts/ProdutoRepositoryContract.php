@@ -17,6 +17,8 @@ interface ProdutoRepositoryContract
 
     public function paginateWithSearch(int $perPage, string $title, string $nameSearch, string $categoria): LengthAwarePaginator;
 
+    public function getTrash(int $perPage, string $field, string $nameSearch, string $categoria): LengthAwarePaginator;
+
     public function findOrfail(int $id);
 
     public function restore(int $id);

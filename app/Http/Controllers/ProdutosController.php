@@ -39,6 +39,25 @@ class ProdutosController extends Controller
         }
     }
 
+    /*
+        Pega produtos que estão excluidos
+    */
+    public function onlyTrashed(Request $request)
+    {
+        try {
+            $perPage = 5;
+            $nameSearch = $request->get("s", "");
+            $categoria = $request->get("categoria", "");
+            $field = "nome";
+            if (!$list = $this->repository->getTrash($perPage, $field, $nameSearch, $categoria)) {
+                throw new Exception($list);
+            }
+            return response()->json(compact("list"));
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), self::STATUS_CODE_ERROR);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *
