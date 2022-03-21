@@ -17,7 +17,7 @@ class CreateRegistrosDecomprasTable extends Migration
             $table->id();
             $table->bigInteger("idProduto", false, true);
             $table->integer("quantidade");
-            $table->decimal(4, 2);
+            $table->decimal("precoTotal", 8, 2);
             $table->boolean("entregarEmCasa");
             $table->string("nome", 100);
             $table->string("sobrenome", 150);
@@ -32,6 +32,7 @@ class CreateRegistrosDecomprasTable extends Migration
             $table->bigInteger("numeroCartao");
             $table->string("nomeCartao");
             $table->string("validadeCartao", 10);
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign("idProduto")->references("id")->on("produtos");
