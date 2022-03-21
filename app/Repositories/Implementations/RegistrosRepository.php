@@ -19,6 +19,11 @@ class RegistrosRepository extends AbstractRepository implements RegistrosReposit
         return $mainQuery->paginate($perPage);
     }
 
+    public function findOrFail(int $id)
+    {
+        return $this->model->with("produtos")->findOrFail($id);
+    }
+
     public function getTrash(int $perPage, string $field, string $nameSearch): LengthAwarePaginator
     {
         $mainQuery = $this->model->onlyTrashed()->with(["produtos"])->when($nameSearch, function ($query) use ($field, $nameSearch) {
