@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\RegistrosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,8 @@ Route::apiResource("/categorias", CategoriasController::class);
 Route::get("/categorias/restore/{categoria}", [CategoriasController::class, "restore"]);
 Route::delete("/categorias/forceDelete/{categoria}", [CategoriasController::class, "forceDelete"]);
 Route::get("/categorias/listAllCategories/{categoria}", [CategoriasController::class, "listAllCategories"]);
+
+Route::apiResource("/registros", RegistrosController::class);
+Route::get("/registros/restore/{registro}", [RegistrosController::class, "restore"]);
+Route::delete("/registros/forceDelete/{registro}", [RegistrosController::class, "forceDelete"]);
+Route::get("/registros/onlytrashed/{registro}", [RegistrosController::class, "onlyTrashed"]);

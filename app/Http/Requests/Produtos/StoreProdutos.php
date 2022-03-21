@@ -4,6 +4,8 @@ namespace App\Http\Requests\Produtos;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use function PHPSTORM_META\map;
+
 class StoreProdutos extends FormRequest
 {
     /**
@@ -28,7 +30,8 @@ class StoreProdutos extends FormRequest
             "preco" => "required",
             "categoria" => "required",
             "foto" => "nullable|file",
-            "descricao" => "nullable"
+            "descricao" => "nullable",
+            "estoque" => "required|min:1"
         ];
     }
 }
