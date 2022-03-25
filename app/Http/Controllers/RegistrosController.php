@@ -38,6 +38,30 @@ class RegistrosController extends Controller
         }
     }
 
+    public function listAll()
+    {
+        try {
+            if (!$list = $this->repository->list()) {
+                throw new Exception($list);
+            }
+            return response()->json(compact("list"));
+        } catch (\Throwable $th) {
+            return response()->json(compact('th'), self::STATUS_CODE_ERROR);
+        }
+    }
+
+    public function produtosMaisVendidos()
+    {
+        try {
+            if (!$list = $this->repository->maisVendidos()) {
+                throw new Exception($list);
+            }
+            return response()->json(compact("list"));
+        } catch (\Throwable $th) {
+            return response()->json(compact('th'), self::STATUS_CODE_ERROR);
+        }
+    }
+
     public function onlyTrashed(Request $request)
     {
         try {

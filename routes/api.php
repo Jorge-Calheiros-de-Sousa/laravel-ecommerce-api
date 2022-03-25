@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\ProdutoMaisVendidosController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\RegistrosController;
 use Illuminate\Http\Request;
@@ -36,3 +37,7 @@ Route::apiResource("/registros", RegistrosController::class);
 Route::get("/registros/restore/{registro}", [RegistrosController::class, "restore"]);
 Route::delete("/registros/forceDelete/{registro}", [RegistrosController::class, "forceDelete"]);
 Route::get("/registros/onlytrashed/{registro}", [RegistrosController::class, "onlyTrashed"]);
+Route::get("/registros/listAllRegistros/{registro}", [RegistrosController::class, "listAll"]);
+Route::get("/registros/maisVendidos/{registro}", [RegistrosController::class, "produtosMaisVendidos"]);
+
+Route::get("/produtosMaisVendidos", [ProdutoMaisVendidosController::class, "index"]);

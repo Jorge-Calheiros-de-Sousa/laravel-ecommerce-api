@@ -5,7 +5,7 @@ namespace App\Repositories\Contracts;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
-interface RegistrosRepositoryContract
+interface ProdutosMaisVendidosRepositoryContract
 {
     public function create(array $data);
 
@@ -17,7 +17,7 @@ interface RegistrosRepositoryContract
 
     public function paginateWithSearch(int $perPage, string $title, string $nameSearch): LengthAwarePaginator;
 
-    public function getTrash(int $perPage, string $field, string $nameSearch): LengthAwarePaginator;
+    public function updateOrCreateProduto(array $data);
 
     public function findOrfail(int $id);
 
@@ -26,6 +26,4 @@ interface RegistrosRepositoryContract
     public function forceDelete(int $id);
 
     public function resolveModel();
-
-    public function maisVendidos();
 }
