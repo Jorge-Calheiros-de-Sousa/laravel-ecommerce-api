@@ -5,6 +5,7 @@ namespace App\Repositories\Implementations;
 use App\Models\Registros;
 use App\Repositories\Contracts\RegistrosRepositoryContract;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class RegistrosRepository extends AbstractRepository implements RegistrosRepositoryContract
 {
@@ -31,5 +32,16 @@ class RegistrosRepository extends AbstractRepository implements RegistrosReposit
         });
 
         return $mainQuery->paginate($perPage);
+    }
+
+    public function list(): Collection
+    {
+        return $this->model->with("produtos")->get();
+    }
+
+    public function maisVendidos()
+    {
+        $mainQuery = $this->model->limit(5)->orderBy("precoTotal", "desc");
+        return $mainQuery->get();
     }
 }

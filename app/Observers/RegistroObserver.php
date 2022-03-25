@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Registros;
 use App\Repositories\Contracts\ProdutoRepositoryContract;
+use App\Repositories\Contracts\ProdutosMaisVendidosRepositoryContract;
 use Exception;
 
 class RegistroObserver
@@ -28,6 +29,27 @@ class RegistroObserver
                 throw new Exception($updated);
             }
             return true;
+        } catch (\Throwable $th) {
+            return $th;
+        }
+    }
+
+    public function saving()
+    {
+        try {
+            $repository = app(ProdutosMaisVendidosRepositoryContract::class);
+            $idProduto = request()->input("idProduto");
+            $quantidade = request()->input("quantidade");
+            $precoTotal = request()->input("precoTotal");
+            $data = [
+                "idProduto" => $idProduto,
+                "quantidade" => $quantidade,
+                "precoTotal" => $precoTotal
+            ];
+            $done = $repository->updateOrCreateProduto($data);
+            if ($done) {
+                throw new Exception($done);
+            }
         } catch (\Throwable $th) {
             return $th;
         }
