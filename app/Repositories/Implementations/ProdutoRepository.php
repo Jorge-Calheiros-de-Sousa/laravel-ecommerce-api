@@ -19,7 +19,7 @@ class ProdutoRepository extends AbstractRepository implements ProdutoRepositoryC
                 $query->whereHas("categoria", function ($query) use ($categoria) {
                     $query->where("categorias.slug", $categoria);
                 });
-            });
+            })->where("estoque", ">", "0");
 
         return $mainQuery->paginate($perPage);
     }
